@@ -4,14 +4,14 @@
 // MVID: 8C64A4D9-F1B2-4309-8DF5-ACE3B9A5E7DC
 // Assembly location: E:\Administrator\Desktop\NET.Reflector\dot\cn.jpush.api.dll
 
-using cn.jpush.api.report;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Runtime.Serialization.Json;
 using System.Text;
-using System.Web.Script.Serialization;
+using cn.jpush.api.report;
+using Newtonsoft.Json;
 
 namespace cn.jpush.api.util
 {
@@ -47,7 +47,7 @@ namespace cn.jpush.api.util
 
     public static List<ReceivedResult.Received> JsonList(string jsonString)
     {
-      return new JavaScriptSerializer().Deserialize<List<ReceivedResult.Received>>(jsonString);
+      return JsonConvert.DeserializeObject<List<ReceivedResult.Received>>(jsonString);
     }
 
     private static string ValueToJson(object value)
