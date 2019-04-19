@@ -31,6 +31,11 @@ namespace cn.jpush.api.push.audience
       return new AudienceTarget(AudienceType.tag_and, values).Check();
     }
 
+    public static AudienceTarget tag_not(HashSet<string> values)
+    {
+      return new AudienceTarget(AudienceType.tag_not, values).Check();
+    }
+
     public static AudienceTarget alias(HashSet<string> values)
     {
       return new AudienceTarget(AudienceType.alias, values).Check();

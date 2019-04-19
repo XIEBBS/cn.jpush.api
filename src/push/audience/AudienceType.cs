@@ -10,6 +10,7 @@ namespace cn.jpush.api.push.audience
   {
     tag,
     tag_and,
+    tag_not,
     alias,
     segment,
     registration_id,
