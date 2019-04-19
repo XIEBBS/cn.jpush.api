@@ -153,6 +153,58 @@ namespace cn.jpush.api.push.mode
       return this.tag_and(new HashSet<string>((IEnumerable<string>) values));
     }
 
+        #region tag_not
+
+        public static Audience s_tag_not(HashSet<string> values) {
+            return new Audience().tag_not(values);
+        }
+
+        public static Audience s_tag_not(params string[] values) {
+            return new Audience().tag_not(values);
+        }
+
+        public Audience tag_not(HashSet<string> values) {
+            if (allAudience != null) {
+                allAudience = null;
+            }
+
+            AudienceTarget audienceTarget = AudienceTarget.tag_not(values);
+            allAudience = null;
+            if (dictionary == null) {
+                dictionary = new Dictionary<string, HashSet<string>>();
+            }
+
+            Dictionary<string, HashSet<string>> dictionary1 = dictionary;
+            AudienceType audienceType = audienceTarget.audienceType;
+            string key1 = audienceType.ToString();
+            if (dictionary1.ContainsKey(key1)) {
+                Dictionary<string, HashSet<string>> dictionary2 = dictionary;
+                audienceType = audienceTarget.audienceType;
+                string index = audienceType.ToString();
+                HashSet<string> stringSet = dictionary2[index];
+                foreach (string str in values) {
+                    stringSet.Add(str);
+                }
+            } else {
+                Dictionary<string, HashSet<string>> dictionary2 = dictionary;
+                audienceType = audienceTarget.audienceType;
+                string key2 = audienceType.ToString();
+                HashSet<string> stringSet = values;
+                dictionary2.Add(key2, stringSet);
+            }
+
+            return Check();
+        }
+
+        public Audience tag_not(params string[] values) {
+            if (allAudience != null) {
+                allAudience = null;
+            }
+
+            return tag_not(new HashSet<string>(values));
+        }
+        #endregion
+
     public Audience alias(HashSet<string> values)
     {
       if (this.allAudience != null)
